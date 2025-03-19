@@ -21,4 +21,9 @@ public class ProductController(IList<Product> pl): ControllerBase
    public IActionResult GetProduct(string name){
         return Ok(pl.FirstOrDefault(x => x.Name == name));
    }
+
+     [HttpGet("Products")]
+   public IActionResult GetProducts(){
+        return Ok(pl);
+   }
 }
