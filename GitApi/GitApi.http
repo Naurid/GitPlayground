@@ -1,0 +1,6 @@
+@GitApi_HostAddress = http://localhost:5184
+
+GET {{GitApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
