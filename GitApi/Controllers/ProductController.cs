@@ -26,4 +26,42 @@ public class ProductController(IList<Product> pl): ControllerBase
    public IActionResult GetProducts(){
         return Ok(pl);
    }
+
+    [HttpPut("ProductName/{id}/{name}")]
+    public IActionResult ChangeProductName(int id, string name)
+    {
+        try
+        {
+            Product product = pl.FirstOrDefault(x => x.Id == id);
+
+            if(product!=null){
+                product.Name = name;
+                return Ok();
+            }
+            return NotFound();
+        }
+        catch
+        {
+            return NotFound();
+        }
+    }
+
+     [HttpPut("ProductPrice/{id}/{price}")]
+    public IActionResult ChangeProductPrice(int id, decimal price)
+    {
+        try
+        {
+            Product product = pl.FirstOrDefault(x => x.Id == id);
+
+            if(product != null){
+                product.Price = price;
+            return Ok();
+            }
+            return NotFound();
+        }
+        catch
+        {
+            return NotFound();
+        }
+    }
 }
