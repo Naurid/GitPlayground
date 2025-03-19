@@ -11,4 +11,14 @@ public class ProductController(IList<Product> pl): ControllerBase
         pl.Add(newproduct);
         return Ok();
    }
+
+    [HttpGet("ProductById/{id}")]
+   public IActionResult GetProduct(int id){
+        return Ok(pl.FirstOrDefault(x => x.Id == id));
+   }
+
+    [HttpGet("ProductByName/{name}")]
+   public IActionResult GetProduct(string name){
+        return Ok(pl.FirstOrDefault(x => x.Name == name));
+   }
 }
