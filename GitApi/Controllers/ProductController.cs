@@ -32,7 +32,7 @@ public class ProductController(IList<Product> pl): ControllerBase
     {
         try
         {
-            Product product = pl.FirstOrDefault(x => x.Id == id);
+            Product? product = pl.FirstOrDefault(x => x.Id == id);
 
             if(product!=null){
                 product.Name = name;
@@ -51,11 +51,29 @@ public class ProductController(IList<Product> pl): ControllerBase
     {
         try
         {
-            Product product = pl.FirstOrDefault(x => x.Id == id);
+            Product? product = pl.FirstOrDefault(x => x.Id == id);
 
             if(product != null){
                 product.Price = price;
-            return Ok();
+                return Ok();
+            }
+            return NotFound();
+        }
+        catch
+        {
+            return NotFound();
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteProduct(int id){
+        try
+        {
+            Product? product = pl.FirstOrDefault(x => x.Id == id);
+
+            if(product != null){
+                pl.Remove(product);
+                return Ok();
             }
             return NotFound();
         }
